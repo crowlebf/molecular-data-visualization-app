@@ -1,0 +1,50 @@
+@keyframes loading {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: .25;
+    transform: scale(.75);
+  }
+}
+
+.loadingWrapper {
+  position: fixed;
+  display: flex;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000093;
+}
+
+.loadingContainer {
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loadingBubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.loadingBubble1 {
+  animation: loading .4s ease 0s infinite alternate;
+}
+.loadingBubble2 {
+  animation: loading .4s ease .2s infinite alternate;
+}
+.loadingBubble3 {
+  animation: loading .4s ease .4s infinite alternate;
+}

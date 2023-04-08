@@ -1,0 +1,44 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin: 2em 0;
+
+  h1 {
+    margin-right: 10px;
+  }
+}
+
+.stats {
+  width: 100%;
+  border: 1px solid #36304a;
+
+  table {
+    background: #fff;
+    border-radius: 10px;
+    width: 100%;
+
+    tbody {
+      border: 1px solid #36304a;
+    }
+  }
+
+  .stat {
+    background-color: #36304a;
+    color: #fff;
+    padding: 1em;
+  }
+
+  .value {
+    text-align: center;
+    padding: 1em;
+    border: 1px solid #36304a;
+  }
+}

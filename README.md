@@ -1,38 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Technologies:
 
-## Getting Started
+Next.js with SWR
 
-First, run the development server:
+React/Typescript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Scss modules
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Docker
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Libraries:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+RDKit
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+D3
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Recharts
 
-## Learn More
+## UI and Usage:
 
-To learn more about Next.js, take a look at the following resources:
+Enter a chEMBL ID (eg. 260 or chEMBL260) into the search bar and click submit. If the submission returns valid data, the following will render:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- A table with the mean, median, and standard deviation of the IC50 values
+- A histogram of the IC50 values
+- A scatterplot with ability to choose different fields against the IC50 values
+- SVG renders of the first 6 compounds based on the SMILES notation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Design Decisions:
 
-## Deploy on Vercel
+- Next.js
+  - An easy framework to get a node app up and running. There are a lot of built in flexibility and performance, and it has the added benefit that it would scale beyond a prototype.
+- Rechart
+  - Popular, stable, and customizable with a quick setup. I’ll outline my difficulties with it below, but I think it helped get charts on the page quickly that were interactive and responsive.
+- Sass modules
+  - Styling per component keeps the markdown uncluttered and readable in a small applications, but there are better choices for scaling.
+- Heroku
+  - Very easy to push a branch for deployment. It plays really well with next and docker, too.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Challenges:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Understanding the data enough to display it in the most accurate way.
+  - For example, some results come back with null for the pchembl_value, which skews the plots. Ideally this would be discussed with stakeholders to discuss whether those results should be omitted or not.
+- Choosing a charting library that had acceptable features and customization for a rapid prototype.
+  - In a real world scenario where this was a rapid prototype, Recharts was easy enough to feed data to use it. However, some sacrifices in its ability to chart histograms would lead me to just use D3 if the component was going to be fully functional and extensible
+- RDKit
+  - The method for loading the script and using the provided MoleculeStructure.jsx some issues with trying to access the document window before it loaded. I added a check to see if the page was mounted, but there is a lot of room for refactoring there
+- Performance
+  - I tested the request with 50,000 records and performance really suffered, especially with rendering and redrawing the charts. As outlined in the prompt, good caching strategies would help, but there is definitely room for improving efficiency with transforming and mutating the data.
+- Types
+  - Given more time, I would have liked to clean up my types and interfaces to reduce some one offs and redundancies.

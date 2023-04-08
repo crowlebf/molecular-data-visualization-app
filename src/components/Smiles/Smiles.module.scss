@@ -1,0 +1,27 @@
+.smilesContainer {
+  margin: 2em 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 10px;
+  width: 90vw;
+}
+
+.smilesItem {
+  display: flex;
+  padding: 1rem;
+  margin: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 5px 5px 0;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+  justify-self: center;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px 0;
+  }
+}
+
+.smilesImage {
+  align-self: center;
+}
